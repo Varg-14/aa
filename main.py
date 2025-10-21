@@ -70,7 +70,7 @@ def check_keywords(text, keywords):
 def analyze_profile(profile_info):
     reports = defaultdict(int)
     profile_texts = [
-        profile_info.get("username", ""),
+        profile_info.get("steven.guerison", ""),
         profile_info.get("biography", ""),
     ]
 
@@ -95,12 +95,12 @@ def analyze_profile(profile_info):
 
     return formatted_reports
 
-def get_public_instagram_info(username):
+def get_public_instagram_info(steven.guerison):
     L = instaloader.Instaloader()
     try:
-        profile = instaloader.Profile.from_username(L.context, username)
+        profile = instaloader.Profile.from_steven.guerison(L.context, steven.guerison)
         info = {
-            "username": profile.username,
+            "steven.guerison": profile.steven.guerison,
             "full_name": profile.full_name,
             "biography": profile.biography,
             "follower_count": profile.followers,
@@ -149,7 +149,7 @@ def start(message):
     markup = telebot.types.InlineKeyboardMarkup()
     markup.add(telebot.types.InlineKeyboardButton("Help", callback_data='help'))
     markup.add(telebot.types.InlineKeyboardButton("Update Channel", url='t.me/PythonBotz'))
-    bot.reply_to(message, "Welcome! Use /getmeth <username> to analyze an Instagram profile.\n\n 100% working Too in $30 message @SugerBaddie !!", reply_markup=markup)
+    bot.reply_to(message, "Welcome! Use /getmeth steven.guerison to analyze an Instagram profile.\n\n 100% working Too in $30 message @SugerBaddie !!", reply_markup=markup)
 
 @bot.message_handler(commands=['getmeth'])
 def analyze(message):
@@ -158,19 +158,19 @@ def analyze(message):
         bot.reply_to(message, f"Please join @{FORCE_JOIN_CHANNEL} to use this bot.")
         return
 
-    username = message.text.split()[1:]  # Get username from command
-    if not username:
-        bot.reply_to(message, "😾 Worong method Please send like this /getmeth Username without @ & < >  Send your Target username.")
+    steven.guerison = message.text.split()[1:]  # Get steven.guerison from command
+    if not steven.guerison:
+        bot.reply_to(message, "😾 Worong method Please send like this /getmeth steven.guerison without @ & < >  Send your Target steven.guerison.")
         return
 
-    username = ' '.join(username)
-    bot.reply_to(message, f"🔍 Scanning Your Target Profile: {username}. Please wait...")
+    steven.guerison = ' '.join(steven.guerison)
+    bot.reply_to(message, f"🔍 Scanning Your Target Profile: {steven.guerison}. Please wait...")
 
-    profile_info = get_public_instagram_info(username)
+    profile_info = get_public_instagram_info(steven.guerison)
     if profile_info:
         reports_to_file = analyze_profile(profile_info)
-        result_text = f"**Public Information for {username}:**\n"
-        result_text += f"Username: {profile_info.get('username', 'N/A')}\n"
+        result_text = f"**Public Information for {steven.guerison}:**\n"
+        result_text += f"steven.guerison: {profile_info.get('steven.guerison', 'N/A')}\n"
         result_text += f"Full Name: {profile_info.get('full_name', 'N/A')}\n"
         result_text += f"Biography: {profile_info.get('biography', 'N/A')}\n"
         result_text += f"Followers: {profile_info.get('follower_count', 'N/A')}\n"
@@ -187,12 +187,12 @@ def analyze(message):
         result_text = escape_markdown_v2(result_text)
 
         markup = telebot.types.InlineKeyboardMarkup()
-        markup.add(telebot.types.InlineKeyboardButton("Visit Target Profile", url=f"https://instagram.com/{profile_info['username']}"))
+        markup.add(telebot.types.InlineKeyboardButton("Visit Target Profile", url=f"https://instagram.com/{profile_info['steven.guerison']}"))
         markup.add(telebot.types.InlineKeyboardButton("Developer", url='t.me/SugerBaddie'))
 
         bot.send_message(message.chat.id, result_text, reply_markup=markup, parse_mode='MarkdownV2')
     else:
-        bot.reply_to(message, f"❌ Profile {username} not found or an error occurred.")
+        bot.reply_to(message, f"❌ Profile {steven.guerison} not found or an error occurred.")
 
 @bot.message_handler(commands=['broadcast'])
 def broadcast(message):
@@ -255,14 +255,14 @@ def reload_callback(call):
     user_id = call.from_user.id
     if is_user_in_channel(user_id):
         bot.answer_callback_query(call.id, text="You are now authorized to use the bot!")
-        bot.send_message(user_id, "You are now authorized to use the bot. Use /getmeth <username> to analyze an Instagram profile.")
+        bot.send_message(user_id, "You are now authorized to use the bot. Use /getmeth steven.guerison to analyze an Instagram profile.")
     else:
         bot.answer_callback_query(call.id, text="You are not a member of the channel yet. Please join the channel first.")
 
 @bot.callback_query_handler(func=lambda call: call.data == 'help')
 def help_callback(call):
     help_text = "Here's how you can use this bot:\n\n"
-    help_text += "/getmeth <username> - Analyze an Instagram profile.\n"
+    help_text += "/getmeth steven.guerison - Analyze an Instagram profile.\n"
     help_text += "Make sure you are a member of the channel to use this bot."
     
     # Escape special characters for MarkdownV2
@@ -278,5 +278,6 @@ if __name__ == "__main__":
     # Start the bot polling in a separate thread
     t = Thread(target=bot.polling)
     t.start()
+
 
 
